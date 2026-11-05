@@ -82,7 +82,7 @@ def render_dashboard(notice="", notice_kind="success", values=None):
       <form method="post" action="/appointments">
         <label for="client_name">Client name *</label><input id="client_name" name="client_name" maxlength="100" required value="{val('client_name')}" placeholder="e.g. Jamie Morgan">
         <label for="email">Email address *</label><input id="email" type="email" name="email" maxlength="254" required value="{val('email')}" placeholder="you@example.com">
-        <label for="phone">Phone <span style="font-weight:400;color:#718096">(optional)</span></label><input id="phone" name="phone" maxlength="40" value="{val('phone')}" placeholder="+1 555 0100">
+        <label for="phone">Phone</label><input id="phone" name="phone" maxlength="40" value="{val('phone')}" placeholder="+1 555 0100" required>
         <label for="service">Appointment type *</label><select id="service" name="service" required><option value="">Choose a service</option>{options}</select>
         <div class="row"><div><label for="appointment_date">Date *</label><input id="appointment_date" type="date" name="appointment_date" min="{date.today().isoformat()}" required value="{val('appointment_date')}"></div><div><label for="appointment_time">Time *</label><input id="appointment_time" type="time" name="appointment_time" required value="{val('appointment_time')}"></div></div>
         <label for="notes">Notes <span style="font-weight:400;color:#718096">(optional)</span></label><textarea id="notes" name="notes" maxlength="500" placeholder="Anything to prepare for the meeting?">{val('notes')}</textarea>
