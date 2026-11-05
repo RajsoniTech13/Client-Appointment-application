@@ -85,7 +85,7 @@ def render_dashboard(notice="", notice_kind="success", values=None):
         <label for="phone">Phone</label><input id="phone" name="phone" maxlength="40" value="{val('phone')}" placeholder="+1 555 0100" required>
         <label for="service">Appointment type *</label><select id="service" name="service" required><option value="">Choose a service</option>{options}</select>
         <div class="row"><div><label for="appointment_date">Date *</label><input id="appointment_date" type="date" name="appointment_date" min="{date.today().isoformat()}" required value="{val('appointment_date')}"></div><div><label for="appointment_time">Time *</label><input id="appointment_time" type="time" name="appointment_time" required value="{val('appointment_time')}"></div></div>
-        <label for="notes">Notes <span style="font-weight:400;color:#718096">(optional)</span></label><textarea id="notes" name="notes" maxlength="500" placeholder="Anything to prepare for the meeting?">{val('notes')}</textarea>
+        <label for="notes">Notes <span style="font-weight:400;color:#748096">(optional)</span></label><textarea id="notes" name="notes" maxlength="500" placeholder="Anything to prepare for the meeting?">{val('notes')}</textarea>
         <button class="primary" type="submit">Book appointment</button><p class="small">All times use your local time. A time can only be booked once.</p>
       </form></section>"""
     with connect_db() as connection:
