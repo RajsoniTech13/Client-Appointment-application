@@ -3,12 +3,13 @@ from html import escape
 from http.server import BaseHTTPRequestHandler, HTTPServer
 from urllib.parse import parse_qs, urlparse
 import sqlite3
+import os
 from validate_appointment_slots import validate_appointment_slot
 
 
-HOST = "127.0.0.1"
-PORT = 8000
-DATABASE = "appointments.db"
+HOST = os.environ.get("HOST", "127.0.0.1")
+PORT = int(os.environ.get("PORT", "8000"))
+DATABASE = os.environ.get("DATABASE", "appointments.db")
 SERVICES = ("Consultation", "Follow-up", "Project review", "Other")
 
 
