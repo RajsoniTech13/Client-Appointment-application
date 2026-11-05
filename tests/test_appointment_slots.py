@@ -1,7 +1,12 @@
 import sqlite3
+import sys
 from datetime import datetime
+from pathlib import Path
 
 import pytest
+
+# Allow both `pytest tests/test_appointment_slots.py` and direct script execution.
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 import app
 from validate_appointment_slots import validate_appointment_slot
@@ -63,3 +68,7 @@ def test_booked_slot_rejects_second_scheduled_appointment(tmp_path, monkeypatch)
                 VALUES (?, ?, ?, ?, ?, ?, ?)""",
                 ("Taylor Lee", "taylor@example.com", "555-0101", *appointment[3:]),
             )
+
+
+if __name__ == "__main__":
+    raise SystemExit(pytest.main([__file__, "-q"]))
