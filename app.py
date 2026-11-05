@@ -3,6 +3,7 @@ from html import escape
 from http.server import BaseHTTPRequestHandler, HTTPServer
 from urllib.parse import parse_qs, urlparse
 import sqlite3
+from validate_appointment_slots import validate_appointment_slot
 
 
 HOST = "127.0.0.1"
@@ -154,12 +155,7 @@ class AppointmentHandler(BaseHTTPRequestHandler):
         elif len(values["client_name"]) > 100 or len(values["phone"]) > 40 or len(values["notes"]) > 500:
             error = "One or more fields are too long."
         else:
-            try:
-                appointment_at = datetime.strptime(values["appointment_date"] + " " + values["appointment_time"], "%Y-%m-%d %H:%M")
-                if appointment_at <= datetime.now():
-                    error = "Choose a date and time in the future."
-            except ValueError:
-                error = "Enter a valid date and time."
+            error = validate_appointment_slot(values["appointment_date"], values["appointment_time"])
         if error:
             self.send_html(render_dashboard(error, "error", values), 400)
             return
