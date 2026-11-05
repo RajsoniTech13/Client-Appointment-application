@@ -19,3 +19,15 @@ USER appuser
 EXPOSE 8000
 
 CMD ["python", "app.py"]
+
+
+# This Dockerfile builds a small Python container for an appointment app:
+
+# 
+# - `RUN ...` — creates a system user named `appuser`, creates `/data`, and gives that user ownership of the data directory.
+# - `COPY --chown=...` — copies the two Python files into `/app` and makes `appuser` their owner. The validation script is copied but not run by this Dockerfile.
+# - `USER appuser` — runs the app as the non-root user, which is safer.
+# - `EXPOSE 8000` — documents that the container listens on port 8000; it does not publish the port by itself.
+# - `CMD ["python", "app.py"]` — starts the app when the container runs.
+
+# To make the app reachable from your machine, you’d typically start it with a port mapping such as `-p 8000:8000`.
